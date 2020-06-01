@@ -19,6 +19,7 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
+
 class Book(models.Model):
     """ Model representing a book (but not a specific copy of a book).'
         책에 대한 정보의 모델
