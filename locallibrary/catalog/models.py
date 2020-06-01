@@ -23,24 +23,24 @@ class Book(models.Model):
     """ Model representing a book (but not a specific copy of a book).'
         책에 대한 정보의 모델
     """
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name = '제목')
 
     # Foreign Key used because book can only have one author, but authors can have multiple books
     # Foreign Key가 사용된 이유는 책은 저자가 하나지만 저자는 여러책을 가질수 있기 때문 Book-author 0... : 1 관계. 다 대 일 관계 , Many to One관계
     # Author as a string rather than object because it hasn't been declared yet in the file
     # Foreign Key에서 'Author'라고 string으로 준 이유는 아직 Author 모델이 언급되지 않았기 때문.
 
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
-    summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, verbose_name = '저자')
+    summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book', verbose_name='요약')
     isbn = models.CharField('ISBN', max_length = 13, help_text='13 Character <a href=https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
 
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # 책과 장르는 many to many기 때문에 many to many field를 사용.
     # Genre class has already been defined so we can specify the object above.
     # 여기서 Genre는 이미 선언되었기 때문에 string이 아닌 Genre로 사용되는것을 볼 수 있다.
-    genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
+    genre = models.ManyToManyField(Genre, help_text='Select a genre for this book', verbose_name='장르')
     
-    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
+    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, verbose_name='언어')
     def __str__(self):
         """String for representing the Model object."""
         return self.title
@@ -53,8 +53,8 @@ class Book(models.Model):
         """Create a string for the Genre. This is required to display genre in Admin."""
         return ', '.join(genre.name for genre in self.genre.all()[:3])
         
-    display_genre.short_description = 'Genre'
-    
+    display_genre.short_description = '장르'
+
 class BookInstance(models.Model):
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
