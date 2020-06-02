@@ -23,7 +23,8 @@
             <dd><a href="{% url 'my-borrowed' %}">My Borrowed</a></dd>
             <dd><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></dd>   
           {% else %}
-            <dd><a href="{% url 'login'%}?next={{request.path}}">Login</a></dd>   
+            <dd><a href="{% url 'login'%}?next={{request.path}}">Login</a> 
+            | <a href="{%url 'signup'%}?next={{request.path}}">Sign up</a></dd>   
           {% endif %} 
           {% if user.is_staff %}
             <hr>

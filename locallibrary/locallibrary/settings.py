@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'catalog',
-
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth', #Core authentication framework and its default models.
     'django.contrib.contenttypes', #Django content type system (allows permissions to be associated with models).
