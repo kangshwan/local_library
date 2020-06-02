@@ -3,9 +3,6 @@ from django.contrib import admin
 # Register your models here.
 from catalog.models import Author, Genre, Book, BookInstance, Language
 
-
-
-
 class BooksInstanceInline(admin.TabularInline):
     model = BookInstance
 
@@ -27,16 +24,15 @@ admin.site.register(Author, AuthorAdmin)
 # admin.site.register(BookInstance)
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ('book','status','due_back', id)
-
+    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
     list_filter = ('status', 'due_back')
-
+    
     fieldsets = (
         (None, {
-            'fields': ('book', 'imprint', 'id')
+            'fields': ('book','imprint', 'id')
         }),
         ('Availability', {
-            'fields': ('status', 'due_back')
+            'fields': ('status', 'due_back','borrower')
         }),
     )
 

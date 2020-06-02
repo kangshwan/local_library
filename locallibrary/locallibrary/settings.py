@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'catalog',
+
     'django.contrib.admin',
     'django.contrib.auth', #Core authentication framework and its default models.
     'django.contrib.contenttypes', #Django content type system (allows permissions to be associated with models).
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog',
 ]
 
 MIDDLEWARE = [
